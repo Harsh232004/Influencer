@@ -1,5 +1,5 @@
 import React from 'react';
-import StatCard from './StatCard';
+import StatCard from '../cards/StatCard';
 import { Users, Megaphone, BarChart } from 'lucide-react';
 
 const StatsSection = () => (

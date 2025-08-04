@@ -1,5 +1,5 @@
 import React from 'react';
-import CaseStudyCard from './CaseStudyCard';
+import CaseStudyCard from '../cards/CaseStudyCard';
 
 const WorkSection = () => (
   <section id="work" className="py-20 bg-white">

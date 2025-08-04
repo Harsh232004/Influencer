@@ -37,28 +37,30 @@ function App() {
   };
 
   return (
-    <div className="relative min-h-screen overflow-x-hidden">
-      {/* Animated Background */}
-      <div className="fixed inset-0 -z-10 animate-gradient bg-gradient-to-br from-indigo-200 via-pink-100 to-yellow-100 transition-all duration-1000" />
-      {/* Main Content with shadow */}
-      <div className="relative z-10 bg-white/80 shadow-2xl rounded-2xl mx-auto max-w-7xl my-8 transition-all duration-700">
-        <Header navLinks={navLinks} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-        <main>
-          <HeroSection />
-          <StatsSection />
-          <ServicesSection />
-          <WorkSection />
-          <BrandsSection />
-          <AboutSection />
-          <ContactSection 
-            formState={formState}
-            handleInputChange={handleInputChange}
-            handleSubmit={handleSubmit}
-            formStatus={formStatus}
-          />
-        </main>
-        <Footer navLinks={navLinks} />
-      </div>
+    // This div wraps your entire application and applies the gradient background
+    <div 
+      className="relative min-h-screen overflow-x-hidden"
+      style={{ background: 'linear-gradient(135deg, #E6E6FA 0%, #FFDFD3 50%, #FFFACD 100%)' }}
+    >
+      {/* Make sure your Header has a transparent background to see the gradient */}
+      <Header navLinks={navLinks} isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+      <main>
+        {/* Your HeroSection (and others) will now sit on top of the gradient */}
+        <HeroSection />
+        <StatsSection />
+        <ServicesSection />
+        <WorkSection />
+        <BrandsSection />
+        <AboutSection />
+        <ContactSection 
+          formState={formState}
+          handleInputChange={handleInputChange}
+          handleSubmit={handleSubmit}
+          formStatus={formStatus}
+        />
+      </main>
+      {/* Make sure your Footer also has a transparent background */}
+      <Footer navLinks={navLinks} />
     </div>
   );
 }
