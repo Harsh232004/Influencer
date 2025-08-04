@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import Header from './components/Header';
-import HeroSection from './components/HeroSection';
-import StatsSection from './components/StatsSection';
-import ServicesSection from './components/ServicesSection';
-import WorkSection from './components/WorkSection';
-import BrandsSection from './components/BrandsSection';
-import AboutSection from './components/AboutSection';
-import ContactSection from './components/ContactSection';
+import HeroSection from './Section/HeroSection';
+import StatsSection from './Section/StatsSection';
+import ServicesSection from './Section/ServicesSection';
+import WorkSection from './Section/WorkSection';
+import BrandsSection from './Section/BrandsSection';
+import AboutSection from './Section/AboutSection';
+import ContactSection from './Section/ContactSection';
 import Footer from './components/Footer';
 
 function App() {
