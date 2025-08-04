@@ -24,3 +24,10 @@
   background-size: 200% 200%;
   animation: gradient-move 10s ease-in-out infinite;
 }
+
+/* In your main CSS file, e.g., index.css */
+
+.active-nav-link-dark {
+  /* This style will apply to the currently viewed section's link */
+  @apply text-white; 
+}

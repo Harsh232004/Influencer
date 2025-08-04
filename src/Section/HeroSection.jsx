@@ -1,8 +1,8 @@
 import React from "react";
-// 1. Import the CountUp component
+// 1. Import the Link component from react-scroll
+import { Link } from "react-scroll";
 import CountUp from "react-countup";
 
-// 2. Adjust the stats array to separate numbers from symbols
 const stats = [
   { end: 200, suffix: '+', label: 'Brands' },
   { end: 1000, suffix: '+', label: 'Campaigns' },
@@ -11,12 +11,10 @@ const stats = [
 
 const HeroSection = () => (
   <section className="hero-animated-gradient py-20 md:py-32 md:pb-40">
-  
     <div className="w-full px-6 sm:px-12 flex flex-col items-center">
       
       {/* Main Hero Content (Top Part) */}
       <div className="w-full flex flex-col md:flex-row items-center justify-between mb-20 md:mb-28">
-         {/* ... (rest of your hero content is unchanged) ... */}
         <div className="md:w-1/2 mb-12 md:mb-0 text-center md:text-left">
           <h1 className="text-4xl md:text-6xl font-extrabold text-[#183153] leading-tight mb-8" style={{ fontFamily: "'Poppins', sans-serif" }}>
             We Empower Brands<br />&amp; Influencers To Achieve More
@@ -24,16 +22,36 @@ const HeroSection = () => (
           <p className="text-lg md:text-xl text-gray-700 mb-10 max-w-xl mx-auto md:mx-0">
             Our comprehensive ERP portal offers seamless management of campaigns, influencers, and financials, ensuring you stay ahead in the digital marketing landscape.
           </p>
+
+          {/* 2. Replace the <button> elements with the smooth-scrolling <Link> component */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-            <button className="border-2 border-orange-500 text-orange-500 font-bold py-3 px-8 rounded-full transition-all duration-200 text-lg hover:bg-orange-50 hover:shadow-md">
+            <Link 
+              to="contact" 
+              smooth={true} 
+              duration={500} 
+              offset={-70}
+              className="cursor-pointer text-center border-2 border-orange-500 text-orange-500 font-bold py-3 px-8 rounded-full transition-all duration-200 text-lg hover:bg-orange-50 hover:shadow-md"
+            >
               I AM BRAND
-            </button>
-            <button className="border-2 border-orange-500 text-orange-500 font-bold py-3 px-8 rounded-full transition-all duration-200 text-lg hover:bg-orange-50 hover:shadow-md">
+            </Link>
+            <Link 
+              to="contact" 
+              smooth={true} 
+              duration={500} 
+              offset={-70}
+              className="cursor-pointer text-center border-2 border-orange-500 text-orange-500 font-bold py-3 px-8 rounded-full transition-all duration-200 text-lg hover:bg-orange-50 hover:shadow-md"
+            >
               I AM INFLUENCER
-            </button>
-            <button className="border-2 border-orange-500 text-orange-500 font-bold py-3 px-8 rounded-full transition-all duration-200 text-lg hover:bg-orange-50 hover:shadow-md">
+            </Link>
+            <Link 
+              to="contact" 
+              smooth={true} 
+              duration={500} 
+              offset={-70}
+              className="cursor-pointer text-center border-2 border-orange-500 text-orange-500 font-bold py-3 px-8 rounded-full transition-all duration-200 text-lg hover:bg-orange-50 hover:shadow-md"
+            >
               I AM CUSTOMER
-            </button>
+            </Link>
           </div>
         </div>
         
@@ -56,7 +74,6 @@ const HeroSection = () => (
               key={stat.label} 
               className="text-center bg-[#f9f6ed] text-[#826c3c] rounded-3xl py-8 px-12 transition-transform hover:scale-105 shadow-lg"
             >
-              {/* 3. Replace the static number with the animated CountUp component */}
               <p className="text-5xl font-bold">
                 <CountUp end={stat.end} duration={2.5} enableScrollSpy />
                 {stat.suffix}
@@ -66,7 +83,6 @@ const HeroSection = () => (
           ))}
         </div>
       </div>
-      
     </div>
   </section>
 );
