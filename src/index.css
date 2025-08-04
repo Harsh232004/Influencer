@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+  This is the key animation for moving the background. 
+  You can leave this as it is.
+*/
+@keyframes gradient-move {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* 
+  This is our new custom class that uses your animation 
+  with the color palette we designed.
+*/
+.bg-custom-animated-gradient {
+  background: linear-gradient(135deg, #E6E6FA, #FFDFD3, #FFFACD);
+  background-size: 200% 200%;
+  animation: gradient-move 10s ease-in-out infinite;
+}
