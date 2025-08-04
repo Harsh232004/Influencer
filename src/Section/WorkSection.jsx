@@ -2,7 +2,8 @@ import React from 'react';
 import CaseStudyCard from '../cards/CaseStudyCard';
 
 const WorkSection = () => (
-  <section id="work" className="py-20 bg-white">
+  // The 'bg-white' class has been REMOVED to make the section transparent
+  <section id="work" className="py-20">
     <div className="container mx-auto px-6">
       <div className="text-center mb-16">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Our Work</h2>

@@ -1,7 +1,8 @@
 import React from 'react';
 
 const BrandsSection = () => (
-  <section className="py-16 bg-gray-50">
+  // The 'bg-gray-50' class has been REMOVED to make this section transparent
+  <section className="py-16">
     <div className="container mx-auto px-6">
       <h3 className="text-center text-2xl font-semibold text-gray-600 mb-10">Trusted by leading brands worldwide</h3>
       <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-8">

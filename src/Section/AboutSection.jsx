@@ -1,7 +1,8 @@
 import React from 'react';
 
 const AboutSection = () => (
-  <section id="about" className="py-20 bg-white">
+  // The 'bg-white' class has been REMOVED to make this section transparent
+  <section id="about" className="py-20">
     <div className="container mx-auto px-6">
       <div className="grid md:grid-cols-2 gap-12 items-center">
         <div>
