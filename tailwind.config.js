@@ -5,9 +5,6 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-<<<<<<< HEAD
-    extend: {},
-=======
     extend: {
       fontFamily: {
         'professional': ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
@@ -25,12 +22,6 @@ module.exports = {
         }
       }
     },
->>>>>>> main
   },
   plugins: [],
 };
-
-<<<<<<< HEAD
-
-=======
->>>>>>> main

@@ -1,20 +1,9 @@
-<<<<<<< HEAD
-=======
-/* @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap'); */
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600&display=swap');
->>>>>>> main
+/* Updated index.css or main.css - Fixed all syntax issues */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-<<<<<<< HEAD
-/* 
-  This is the key animation for moving the background. 
-  You can leave this as it is.
-*/
-=======
-/* Custom animations */
->>>>>>> main
 @keyframes gradient-move {
   0%, 100% {
     background-position: 0% 50%;
@@ -24,41 +13,34 @@
   }
 }
 
-<<<<<<< HEAD
-/* 
-  This is our new custom class that uses your animation 
-  with the color palette we designed.
-*/
-=======
->>>>>>> main
 .bg-custom-animated-gradient {
-  background: linear-gradient(135deg, #E6E6FA, #FFDFD3, #FFFACD);
+  background: linear-gradient(135deg, #e6e6fa, #ffdfd3, #fffacd);
   background-size: 200% 200%;
   animation: gradient-move 10s ease-in-out infinite;
 }
-<<<<<<< HEAD
-=======
 
-/* Gradient text utility */
 .gradient-text {
-  background: linear-gradient(to right, #4f46e5, #7c3aed, #ec4899);
+  background: linear-gradient(90deg, #4f46e5, #7c3aed, #ec4899);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+  color: transparent;
+  display: inline-block;
 }
 
-/* Professional font classes */
 .font-professional {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-optical-sizing: auto;
 }
 
-/* Section title styling */
 .section-title {
   font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 900;
   text-align: center;
   margin-bottom: 1.5rem;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
 }
 
 .section-subtitle {
@@ -69,10 +51,10 @@
   max-width: 48rem;
   margin-left: auto;
   margin-right: auto;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 400;
 }
 
-/* Consistent spacing */
 .section-spacing {
   padding-top: 5rem;
   padding-bottom: 5rem;
@@ -84,9 +66,11 @@
   max-width: 80rem;
   margin-left: auto;
   margin-right: auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-/* Mobile responsive adjustments */
+/* Responsive Design */
 @media (max-width: 768px) {
   .section-spacing {
     padding-top: 3rem;
@@ -97,10 +81,29 @@
   
   .section-title {
     font-size: 2rem;
+    margin-bottom: 1rem;
   }
   
   .section-subtitle {
     font-size: 1rem;
+    line-height: 1.6;
   }
 }
->>>>>>> main
+
+/* Additional tablet breakpoint */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .section-spacing {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  
+  .section-title {
+    font-size: 2.5rem;
+  }
+}
+
+/* Ensure proper text rendering */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
