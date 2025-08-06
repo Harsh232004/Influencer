@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import Header from './components/Header';
 import HeroSection from './Section/HeroSection';
 import StatsSection from './Section/StatsSection';
+<<<<<<< HEAD
+=======
+import InfluencerSection from './Section/InfluencersSection';
+>>>>>>> main
 import ServicesSection from './Section/ServicesSection';
 import WorkSection from './Section/WorkSection';
 import BrandsSection from './Section/BrandsSection';
@@ -37,6 +41,7 @@ function App() {
   };
 
   return (
+<<<<<<< HEAD
     // This div wraps your entire application and applies the gradient background
     <div 
       className="relative min-h-screen overflow-x-hidden"
@@ -61,6 +66,35 @@ function App() {
       </main>
       {/* Make sure your Footer also has a transparent background */}
       <Footer navLinks={navLinks} />
+=======
+    <div 
+    className="relative min-h-screen overflow-x-hidden" 
+    style={{ background: 'linear-gradient(135deg, #E6E6FA 0%, #FFDFD3 50%, #FFFACD 100%)' }} >
+      {/* Header - Now sticky */}
+      <Header
+        navLinks={navLinks}
+        isMenuOpen={isMenuOpen}
+        setIsMenuOpen={setIsMenuOpen}
+      />
+      
+      {/* Add top padding to content so it doesn't hide behind fixed header */}
+      <div className="pt-20">
+        <HeroSection />
+        <StatsSection />
+        <BrandsSection />
+        <ServicesSection />
+        <InfluencerSection />
+        <WorkSection />
+        <AboutSection />
+        <ContactSection
+          formState={formState}
+          formStatus={formStatus}
+          handleInputChange={handleInputChange}
+          handleSubmit={handleSubmit}
+        />
+        <Footer />
+      </div>
+>>>>>>> main
     </div>
   );
 }
