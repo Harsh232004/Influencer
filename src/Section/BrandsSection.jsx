@@ -4,7 +4,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const brands = [
-  // Using the same expanded list of brands
   { id: 1, img: 'https://cdn.worldvectorlogo.com/logos/icici-prudential-1.svg', alt: 'ICICI Prudential' },
   { id: 2, img: 'https://asset.brandfetch.io/id2ToVb4yP/idu8fF10aM.svg', alt: 'InCred Money' },
   { id: 3, img: 'https://asset.brandfetch.io/idYIna1IIy/idqHuks0ii.svg', alt: 'KlarifyLife' },
@@ -23,13 +22,13 @@ const BrandsSection = () => {
   const settings = {
     dots: false,
     infinite: true,
-    slidesToShow: 8, // Increased to show more logos at once
+    slidesToShow: 8,
     slidesToScroll: 1,
     autoplay: true,
-    speed: 4000, // Speed of the scroll animation
+    speed: 4000,
     autoplaySpeed: 0,
     cssEase: "linear",
-    arrows: false, // Hiding arrows for a seamless look
+    arrows: false,
     responsive: [
       { breakpoint: 1024, settings: { slidesToShow: 6 } },
       { breakpoint: 768, settings: { slidesToShow: 4 } },
@@ -38,11 +37,28 @@ const BrandsSection = () => {
   };
 
   return (
-    // Removed `bg-white` to restore your original background
     <section className="py-16 sm:py-24 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <h2 className="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-16">
-          Trusted by leading brands worldwide
+        <h2 
+          className="text-center text-4xl sm:text-5xl font-black tracking-tight text-gray-900 mb-16"
+          style={{ 
+            fontFamily: "'Playfair Display', 'Georgia', serif",
+            letterSpacing: '-0.01em',
+            textShadow: '0 2px 4px rgba(0,0,0,0.05)'
+          }}
+        >
+          Trusted by{" "}
+          <span 
+            style={{ 
+              background: 'linear-gradient(135deg, #F97316 0%, #EC4899 50%, #8B5CF6 100%)',
+              WebkitBackgroundClip: 'text',
+              backgroundClip: 'text',
+              color: 'transparent'
+            }}
+          >
+            leading brands
+          </span>
+          {" "}worldwide
         </h2>
         
         <Slider {...settings}>
@@ -50,7 +66,7 @@ const BrandsSection = () => {
             <div key={brand.id} className="px-4">
               <div className="flex items-center justify-center h-12">
                 <img
-                  className="max-h-full w-auto object-contain filter grayscale"
+                  className="max-h-full w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
                   src={brand.img}
                   alt={brand.alt}
                   loading="lazy"

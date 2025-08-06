@@ -1,100 +1,166 @@
-import React, { useState } from 'react';
-// We will keep the advanced animations you liked
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link } from 'react-scroll'; 
+import { Link } from 'react-scroll';
 import { Menu, X } from 'lucide-react';
+import logoImage from '../assets/soneetmedia_logo.png';
 
 const Header = ({ navLinks, isMenuOpen, setIsMenuOpen }) => {
   const [hoveredLink, setHoveredLink] = useState(null);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 20;
+      setScrolled(isScrolled);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <>
-      {/* 1. This is the new "frosted glass" background for the header */}
-      <header className="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
-        <nav 
-          className="container mx-auto px-6 py-3 flex justify-between items-center"
-          onMouseLeave={() => setHoveredLink(null)} 
-        >
-          {/* 2. Logo color changed to match your branding */}
-          <a href="#" className="text-2xl font-bold text-indigo-700">SONEET MEDIA</a>
-          
-          <div className="hidden md:flex items-center space-x-2">
-            {navLinks.map(link => (
-              <Link
-                key={link.label}
-                to={link.href.substring(1)}
-                spy={true}
-                smooth={true}
-                offset={-80}
-                duration={500}
-                className="relative px-4 py-2 rounded-full text-gray-500 hover:text-indigo-700 transition-colors duration-300 font-semibold cursor-pointer"
-                onMouseEnter={() => setHoveredLink(link.label)}
-              >
-                {/* The animated sliding pill, now with a suitable color */}
-                {hoveredLink === link.label && (
-                  <motion.span
-                    className="absolute inset-0 rounded-full bg-indigo-100"
-                    style={{ zIndex: -1 }}
-                    layoutId="hover-pill"
-                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                  />
-                )}
-                {link.label}
-              </Link>
-            ))}
-          </div>
+      <motion.header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled 
+            ? 'bg-white/95 backdrop-blur-md shadow-lg' 
+            : 'bg-transparent'
+        }`}
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="container-width">
+          <div className="flex items-center justify-between py-6 px-8">
+            
+            {/* Logo Section - MAXIMIZED */}
+            <motion.div
+              onClick={scrollToTop}
+              className="flex items-center gap-4 cursor-pointer"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <img 
+                src={logoImage} 
+                alt="Soneet Media Logo" 
+                className="w-14 h-14 object-contain"
+              />
+              <span className="font-professional font-black text-2xl gradient-text tracking-tight">
+                SONEET MEDIA
+              </span>
+            </motion.div>
 
-          {/* 3. "Get a Quote" button styled to match your screenshot */}
-          <Link 
-            to="contact" 
-            smooth={true} 
-            duration={500}
-            offset={-70}
-            className="hidden md:inline-block bg-gradient-to-r from-cyan-400 to-blue-600 text-white font-bold py-2.5 px-7 rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300 transform cursor-pointer"
-          >
-            Get a Quote
-          </Link>
-
-          <div className="md:hidden">
-            <button onClick={() => setIsMenuOpen(true)} aria-label="Toggle menu" className="text-gray-700">
-              <Menu size={28} />
-            </button>
-          </div>
-        </nav>
-      </header>
-
-      {/* The mobile menu now also has a frosted glass background for consistency */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-50 bg-white/90 backdrop-blur-xl md:hidden"
-          >
-            <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-              <span className="text-2xl font-bold text-indigo-700">SONEET</span>
-              <button onClick={() => setIsMenuOpen(false)} aria-label="Close menu">
-                <X size={28} className="text-gray-700" />
-              </button>
-            </div>
-            <nav className="flex flex-col items-center justify-center h-full -mt-16 space-y-8">
-              {navLinks.map(link => (
+            {/* Desktop Navigation - MAXIMIZED */}
+            <nav className="hidden lg:flex items-center space-x-10">
+              {navLinks.map((link, index) => (
                 <Link
-                  key={link.label}
+                  key={index}
                   to={link.href.substring(1)}
+                  spy={true}
                   smooth={true}
                   duration={500}
-                  offset={-70}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="text-gray-800 text-3xl font-semibold hover:text-indigo-600"
+                  className="relative px-6 py-3 text-gray-800 font-professional font-bold text-lg cursor-pointer transition-colors hover:text-indigo-600"
+                  onMouseEnter={() => setHoveredLink(index)}
+                  onMouseLeave={() => setHoveredLink(null)}
                 >
                   {link.label}
+                  {hoveredLink === index && (
+                    <motion.div
+                      className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full"
+                      layoutId="navbar-underline"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                    />
+                  )}
                 </Link>
               ))}
             </nav>
-          </motion.div>
+
+            {/* CTA Button - MAXIMIZED */}
+            <motion.button
+              className="hidden lg:block px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-professional font-bold text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Get a Quote
+            </motion.button>
+
+            {/* Mobile Menu Button - MAXIMIZED */}
+            <motion.button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="lg:hidden p-3 rounded-xl bg-gray-100 hover:bg-gray-200 transition-colors"
+              whileTap={{ scale: 0.95 }}
+            >
+              {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            </motion.button>
+          </div>
+        </div>
+      </motion.header>
+
+      {/* Mobile Menu - MAXIMIZED */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <>
+            <motion.div
+              className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsMenuOpen(false)}
+            />
+            
+            <motion.div
+              className="fixed top-0 right-0 bottom-0 z-50 w-96 bg-white shadow-2xl"
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            >
+              <div className="p-8">
+                <div className="flex items-center justify-between mb-10">
+                  <div className="flex items-center gap-4">
+                    <img src={logoImage} alt="Logo" className="w-12 h-12" />
+                    <span className="font-professional font-black text-xl gradient-text">
+                      SONEET MEDIA
+                    </span>
+                  </div>
+                  <button
+                    onClick={() => setIsMenuOpen(false)}
+                    className="p-3 rounded-xl hover:bg-gray-100 transition-colors"
+                  >
+                    <X size={24} />
+                  </button>
+                </div>
+
+                <nav className="space-y-6">
+                  {navLinks.map((link, index) => (
+                    <Link
+                      key={index}
+                      to={link.href.substring(1)}
+                      spy={true}
+                      smooth={true}
+                      duration={500}
+                      className="block py-4 px-6 text-gray-800 font-professional font-bold text-lg rounded-xl hover:bg-gray-50 transition-colors cursor-pointer"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                  
+                  <button
+                    className="w-full mt-8 px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-professional font-bold text-lg rounded-xl shadow-lg"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Get a Quote
+                  </button>
+                </nav>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>

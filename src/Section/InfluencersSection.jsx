@@ -6,7 +6,7 @@ import InfluencerCard from '../cards/InfluencerCard'; // Adjust path if needed
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 
-// 1. Updated Data Structure: This now matches the needs of the new card design.
+// Updated Data Structure
 const influencersData = [
   {
     image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop',
@@ -61,7 +61,6 @@ const influencersData = [
 ];
 
 const InfluencersSection = () => {
-  // The slider settings remain the same for the moving motion
   const settings = {
     dots: false,
     infinite: true,
@@ -80,12 +79,33 @@ const InfluencersSection = () => {
   };
 
   return (
-    // Section background is transparent to inherit parent color
     <section className="py-16">
       <div className="container mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-800">Our Star Influencers</h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto mt-2"></div>
+        {/* ENHANCED: Heading with hover effect on existing accent line */}
+        <div className="text-center mb-12 group">
+          <h2 
+            className="text-3xl md:text-4xl lg:text-5xl font-black text-gray-800 tracking-tight mb-4 cursor-pointer"
+            style={{ 
+              fontFamily: "'Playfair Display', 'Georgia', serif",
+              textShadow: '0 2px 4px rgba(0,0,0,0.1)',
+              letterSpacing: '-0.01em'
+            }}
+          >
+            Our{" "}
+            <span 
+              style={{ 
+                background: 'linear-gradient(135deg, #8B5CF6 0%, #3B82F6 50%, #06B6D4 100%)',
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text',
+                color: 'transparent'
+              }}
+            >
+              Star Influencers
+            </span>
+          </h2>
+          
+          {/* UPDATED: Existing accent line with hover expansion functionality */}
+          <div className="w-24 group-hover:w-48 h-1 bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-500 mx-auto rounded-full shadow-md transition-all duration-300 ease-out"></div>
         </div>
         
         <Slider {...settings}>
