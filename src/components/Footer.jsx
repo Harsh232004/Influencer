@@ -1,96 +1,115 @@
 import React from 'react';
-// Import a wider range of icons for a more complete look
-import { Mail, Phone, ArrowRight, Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
-
-const footerLinks = {
-  company: [
-    { label: 'Home', href: '#' },
-    { label: 'About Us', href: '#about' }, // Assuming you have an about section
-    { label: 'Our Work', href: '#work' },   // Assuming you have a work section
-    { label: 'Services', href: '#services' }, // Assuming you have a services section
-  ],
-  documentation: [
-    { label: 'Help Centre', href: '#' },
-    { label: 'Contact', href: '#contact' }, // Assuming you have a contact section
-    { label: 'FAQ', href: '#' },
-    { label: 'Privacy Policy', href: '#' },
-  ],
-};
+import { Facebook, Instagram, Linkedin, Twitter, MapPin, Mail, Phone } from 'lucide-react';
 
 const Footer = () => {
-  const handleNewsletterSubmit = (e) => {
-    e.preventDefault();
-    alert('Thank you for subscribing!');
-  };
-
   return (
-    // 1. Switched to a rich, dark gray background and white text
-    <footer className="bg-gray-900 rounded-t-[40px] text-gray-300 mt-20">
-      <div className="container mx-auto px-6 lg:px-8 py-16">
+    <footer className="relative bg-slate-900 text-white mt-20 rounded-t-[40px]">
+      {/* Subtle gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-slate-900 to-slate-800 rounded-t-[40px]"></div>
+      
+      <div className="relative z-10 container mx-auto px-6 lg:px-8 py-16">
         
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-10">
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           
-          {/* Column 1: Newsletter Signup */}
-          <div className="md:col-span-3 lg:col-span-2">
-            <h3 className="text-2xl font-bold text-white mb-2">Soneetmedia</h3>
-            <p className="text-gray-400 mb-6">Stay in the loop with our latest news and updates.</p>
-            
-            {/* Newsletter Form with a dark theme */}
-            <form onSubmit={handleNewsletterSubmit} className="relative max-w-sm">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                required
-                className="w-full py-3 pl-4 pr-16 text-white bg-gray-800 border border-gray-700 rounded-full focus:outline-none focus:ring-2 focus:ring-orange-500"
-              />
-              <button
-                type="submit"
-                className="absolute top-1/2 right-2 -translate-y-1/2 bg-orange-500 text-white p-2 rounded-full hover:bg-orange-600 transition-all"
-                aria-label="Subscribe to newsletter"
-              >
-                <ArrowRight size={20} />
-              </button>
-            </form>
-          </div>
-
-          {/* Column 2 & 3: Links */}
-          <div>
-            <h4 className="font-bold text-white text-lg mb-4">Company</h4>
-            <ul className="space-y-3">
-              {footerLinks.company.map(link => (
-                <li key={link.label}>
-                  <a href={link.href} className="hover:text-white transition-colors">{link.label}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h4 className="font-bold text-white text-lg mb-4">Documentation</h4>
-            <ul className="space-y-3">
-              {footerLinks.documentation.map(link => (
-                <li key={link.label}>
-                  <a href={link.href} className="hover:text-white transition-colors">{link.label}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 4: Social Links with Icons */}
-          <div>
-            <h4 className="font-bold text-white text-lg mb-4">Follow Us</h4>
-            <div className="flex space-x-4">
-              <a href="#" className="hover:text-white transition-colors"><Facebook size={24} /></a>
-              <a href="#" className="hover:text-white transition-colors"><Instagram size={24} /></a>
-              <a href="#" className="hover:text-white transition-colors"><Linkedin size={24} /></a>
-              <a href="#" className="hover:text-white transition-colors"><Twitter size={24} /></a>
+          {/* Brand Section */}
+          <div className="lg:col-span-2">
+            <div className="mb-8">
+              <h3 className="text-3xl font-bold mb-2">
+                <span className="text-white">SONEET</span>
+                <span className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent"> MEDIA</span>
+              </h3>
+              <p className="text-purple-300 text-sm font-medium mb-4">By the creators, for the creators</p>
+              <p className="text-gray-300 text-lg leading-relaxed">
+                Empowering creativity through innovative digital solutions. We craft exceptional experiences that bring your vision to life.
+              </p>
             </div>
+            
+            {/* Contact Info */}
+            <div className="space-y-3">
+              <div className="flex items-center text-gray-300 hover:text-purple-400 transition-colors">
+                <MapPin size={18} className="mr-3 text-purple-400" />
+                <span>New York, NY 10001</span>
+              </div>
+              <div className="flex items-center text-gray-300 hover:text-purple-400 transition-colors">
+                <Mail size={18} className="mr-3 text-purple-400" />
+                <span>hello@soneetmedia.com</span>
+              </div>
+              <div className="flex items-center text-gray-300 hover:text-purple-400 transition-colors">
+                <Phone size={18} className="mr-3 text-purple-400" />
+                <span>+1 (555) 123-4567</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h4 className="text-xl font-semibold mb-6 text-white">Quick Links</h4>
+            <ul className="space-y-4">
+              {[
+                { label: 'Services', href: '#' },
+                { label: 'Our Work', href: '#' },
+                { label: 'About Us', href: '#' },
+                { label: 'Contact', href: '#' }
+              ].map(link => (
+                <li key={link.label}>
+                  <a 
+                    href={link.href} 
+                    className="text-gray-300 hover:text-purple-400 transition-all duration-300 relative inline-block group"
+                  >
+                    {link.label}
+                    <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-purple-400 transition-all duration-300 group-hover:w-full"></span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Connect Section */}
+          <div>
+            <h4 className="text-xl font-semibold mb-6 text-white">Connect With Us</h4>
+            
+            {/* Social Icons */}
+            <div className="flex space-x-4 mb-8">
+              {[
+                { icon: Facebook, href: "#", label: "Facebook" },
+                { icon: Instagram, href: "#", label: "Instagram" },
+                { icon: Linkedin, href: "#", label: "LinkedIn" },
+                { icon: Twitter, href: "#", label: "Twitter" }
+              ].map(({ icon: Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  className="w-10 h-10 bg-gray-800 hover:bg-purple-600 rounded-lg flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:shadow-lg"
+                  aria-label={label}
+                >
+                  <Icon size={18} />
+                </a>
+              ))}
+            </div>
+
+            {/* CTA Button matching the header style */}
+            <a 
+              href="#contact"
+              className="inline-block bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-medium px-6 py-3 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+            >
+              Get a Quote
+            </a>
           </div>
         </div>
 
-        {/* Bottom Bar: Copyright and Terms */}
-        <div className="mt-16 pt-8 border-t border-gray-700 flex flex-col sm:flex-row justify-between items-center text-gray-500">
-          <p>&copy; {new Date().getFullYear()} Soneetmedia. All Rights Reserved.</p>
-          <a href="#" className="hover:text-white mt-4 sm:mt-0">Terms & Conditions</a>
+        {/* Bottom Bar */}
+        <div className="border-t border-gray-700 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center text-gray-400">
+            <p className="mb-4 md:mb-0">
+              &copy; {new Date().getFullYear()} Soneetmedia. All Rights Reserved.
+            </p>
+            <div className="flex space-x-6">
+              <a href="#" className="hover:text-purple-400 transition-colors">
+                Terms & Conditions
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
